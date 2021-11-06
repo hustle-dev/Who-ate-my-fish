@@ -1,22 +1,22 @@
 @use 'sass:math';
-// _mixin.scss
-// 고해상도 배경이미지 처리 ---------------------------------------------------- /
-@mixin bgRetina($file, $type, $width, $height) {
-  background-image: url("./../assets/images/" + $file + "." + $type);
-  background-repeat: no-repeat;
+@use './unit' as *;
 
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 144dpi) {
-    & {
-      background-image: url('./../assets/images/' + $file + '@2x.' + #{$type});
-      background-size: $width $height;
-    }
-  }
+// 기본 padding, border radius 스타일 ---------------------------------------------------- /
+@mixin basicStyle($padding: 2%) {
+  border-radius: rem(10px);
+  font-size: rem(16px);
+  padding: 0 $padding;
+}
+
+// 그림자 설정
+@mixin boxShadow {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 // Float 해제를 위한 clear 스타일 ---------------------------------------------------- /
 @mixin clearFix {
   &::after {
-    content: "";
+    content: '';
     display: block;
     clear: both;
   }
@@ -35,7 +35,6 @@
   width: 100vw;
   position: relative;
   left: 50%;
-  // 양 사이드로 펼칠 수 있음.
   margin-left: -50vw;
   @content;
 }
@@ -43,17 +42,14 @@
 // 요소 박스의 최대 크기 설정 ----------------------------------------------------------- /
 @mixin boxSizeMax($width: 1000px, $paddingX: 0) {
   max-width: $width;
-  // paddingX를 양 옆에 패딩으로 줌.
   padding-left: $paddingX;
   padding-right: $paddingX;
-  // 가운데 정렬. mixin 재활용
   @include autoMargin();
   @content;
 }
 
 // 반응형 미디어 ----------------------------------------------------------- /
 @mixin responsive($width: max-width) {
-  // 기본값 max-width로 속성값이 들어감.
   #{$width}: 100%;
   height: auto;
 }
@@ -63,21 +59,4 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-}
-
-// 반응형 iframe ----------------------------------------------------------- /
-@mixin resposiveIframe($width: 16, $height: 9) {
-  $ratio: ($height/$width) * 100%;
-  position: relative;
-  width: 100%;
-  height: 0 !important;
-  padding-top: $ratio;
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
 }

@@ -1,0 +1,95 @@
+@use './../utils' as *;
+@use './../components' as *;
+
+// 데스크탑
+@include respond-above(md) {
+  .full-chat {
+    &__container {
+      width: 49%;
+      height: 80vh;
+    }
+  }
+}
+
+// 모바일
+@include respond-below(md) {
+  .full-chat {
+    &__container {
+      width: 100%;
+      height: 80vh;
+    }
+  }
+}
+
+.full-chat {
+  &__container {
+    position: relative;
+    @include basicStyle;
+    @include boxShadow;
+    background-color: $white;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  &__container::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__item {
+    width: 100%;
+    position: relative;
+    margin: rem(16px) 0;
+    word-break: break-all;
+
+    &-img {
+      width: 17%;
+    }
+  }
+
+  &__user-name {
+    position: absolute;
+    top: rem(10px);
+  }
+  &__item-msg {
+    align-self: center;
+    background-color: $mint;
+    margin-top: rem(30px);
+    // width: 80%;
+    padding: rem(16px);
+    border-radius: rem(10px);
+    @include boxShadow;
+  }
+}
+
+.otherMessage {
+  @include flexbox($align-items: flex-start);
+  .full-chat {
+    &__user-name {
+      position: absolute;
+      top: rem(8px);
+      left: 20%;
+    }
+    &__item-msg {
+      margin-left: rem(16px);
+      background-color: $mint;
+      border-top-left-radius: 0;
+    }
+  }
+}
+
+.myMessage {
+  @include flexbox($direction: row-reverse, $align-items: flex-start);
+  position: relative;
+  .full-chat {
+    &__user-name {
+      position: absolute;
+      top: rem(8px);
+      right: 20%;
+    }
+    &__item-msg {
+      margin-right: rem(16px);
+      background-color: $light-blue;
+      border-top-right-radius: 0;
+    }
+  }
+}
