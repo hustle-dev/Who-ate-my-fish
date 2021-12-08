@@ -1,5 +1,7 @@
 # Who-ate-my-fish
 
+블로그 회고 링크: https://velog.io/@hustle-dev/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-Who-ate-my-fish
+
 ## 프로젝트 소개
 
 접속한 사용자들이 실시간 소통을 통해서 “생선을 훔쳐 간” 고양이를 찾는 컨셉의 채팅 기반 웹 게임
